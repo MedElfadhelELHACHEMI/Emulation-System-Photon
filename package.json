@@ -1,0 +1,40 @@
+{
+  "name": "emulation_system_photon",
+  "version": "1.0.0",
+  "description": "this server will emulate a self drivng car central server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bin/dev",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && mkdir dist && babel server -s -d dist",
+    "production": "npm run build && nodemon bin/production"
+  },
+  "dependencies": {
+    "body-parser": "~1.16.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
+    "jade": "~1.11.0",
+    "mongoose": "^4.8.6",
+    "morgan": "~1.7.0",
+    "nodemon": "^1.11.0",
+    "serve-favicon": "~2.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MedElfadhelELHACHEMI/Emulation-System-Photon.git"
+  },
+  "author": "https://github.com/MedElfadhelELHACHEMI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MedElfadhelELHACHEMI/Emulation-System-Photon/issues"
+  },
+  "homepage": "https://github.com/MedElfadhelELHACHEMI/Emulation-System-Photon#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.22.0"
+  }
+}

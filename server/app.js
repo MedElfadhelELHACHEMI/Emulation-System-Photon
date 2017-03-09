@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import http from 'http';
 import SocketIO from 'socket.io'
+import socketController from './controllers/socketController';
 
 import routes from './routes';
 
@@ -19,11 +20,7 @@ app.use(bodyParser.json());
 
 app.use('/api', routes);
 io.on('connection', (socket) => {
-  console.log('connected on socket');
-  socket.on('ding', (msg) => {
-    console.log(msg)
-    socket.emit('response','received'+msg);
-  });
+  return socketController.eventHandler(socket)
 });
 
 

@@ -5,12 +5,16 @@ import commuteController from './commuteController'
 
 
 
+
 const socketController = {};
 
 socketController.eventHandler = (socket)=>{
-  socket.on('newcommute',(data)=>{
-    return commuteController.newCommute(data)
+  socket.on('newcommute',(commute)=>{
+    console.log('[EVENT] NEW_COMMUTE');
+    return commuteController.newCommute(commute)
   })
 }
+
+
 
 export default socketController;

@@ -3,9 +3,10 @@
  */
 
 const commuteController = {};
+commuteController.commutes = [];
 
 
 commuteController.newCommute = (data)=>{
-  console.log(data);
+  this.commutes.push(data);
 }
 export default commuteController;

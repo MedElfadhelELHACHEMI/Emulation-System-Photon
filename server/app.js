@@ -12,15 +12,18 @@ mongoose.connect('mongodb://localhost:27017/photon', () => {
 });
 
 const app = express();
-const server = http.Server(app);
+const server = http.createServer(app);
 const io = new SocketIO(server);
 
 // Middleware
 app.use(bodyParser.json());
 
 app.use('/api', routes);
+
 io.on('connection', (socket) => {
-  return socketController.eventHandler(socket)
+  console.log('client connected');
+  return socketController.eventHandler(socket);
+
 });
 
 

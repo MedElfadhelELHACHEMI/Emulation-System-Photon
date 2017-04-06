@@ -1,6 +1,6 @@
 /**
- * Created by BoB on 3/9/2017.
- */
+* Created by BoB on 3/9/2017.
+*/
 import commuteController from './commuteController'
 
 
@@ -9,9 +9,12 @@ import commuteController from './commuteController'
 const socketController = {};
 
 socketController.eventHandler = (socket)=>{
-  socket.on('newcommute',(commute)=>{
+  const _socket = socket;
+  _socket.on('newcommute',(data)=>{
     console.log('[EVENT] NEW_COMMUTE');
-    return commuteController.newCommute(commute)
+    commuteController.newCommute(data,function(car){
+      socket.emit('car_movement', car );
+    })
   })
 }
 

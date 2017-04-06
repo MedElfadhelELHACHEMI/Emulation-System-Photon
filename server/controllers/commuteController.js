@@ -10,10 +10,12 @@ const commuteController = {};
 const delay = 100;
 const decimal = 5;
 let interval;
+commuteController.commutes = [];
 
 commuteController.newCommute = (commute, callback)=>{
   let _commute = commute;
   let car;
+  this.commutes.push(commute);
   db.model('cars').findOne({'_id' : commute.car_id}).then(theCar => {
     _commute.step = 0;
     car = theCar;
@@ -49,6 +51,5 @@ function movecar(commute,theCar, callback){
 
 
 }
-
 
 export default commuteController;

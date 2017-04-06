@@ -23,7 +23,7 @@ app.use('/api', routes);
 io.on('connection', (socket) => {
 
 	console.log('connected client')
-  return socketController.eventHandler(socket)
+  return socketController.eventHandler(socket, io)
 
 });
 

@@ -6,7 +6,7 @@ import timer from 'timers'
 import carMove from '../../util/car-move'
 import db from '../models';
 
-const commuteController = {};
+let commuteController = {};
 const delay = 100;
 const decimal = 5;
 let interval;
@@ -15,8 +15,9 @@ commuteController.commutes = [];
 commuteController.newCommute = (commute, callback)=>{
   let _commute = commute;
   let car;
-  this.commutes.push(commute);
-  db.model('cars').findOne({'_id' : commute.car_id}).then(theCar => {
+  commuteController.commutes.push(commute);
+  console.log('car_id: ', commute.car_id)
+  db.cars.findOne({'_id' : commute.car_id}).then(theCar => {
     _commute.step = 0;
     car = theCar;
     _commute.timestamp = 0;
@@ -40,9 +41,6 @@ function movecar(commute,theCar, callback){
   if(newPos[0].toFixed(decimal) === coord[commute.step+1][0].toFixed(decimal) && newPos[1].toFixed(decimal) === coord[commute.step+1][1].toFixed(decimal)){
     commute.timestamp = 0;
     commute.step++;
-
-    // console.log(newPos[0].toFixed(decimal), coord[commute.step][0].toFixed(decimal))
-    // console.log(newPos[1].toFixed(decimal), coord[commute.step][1].toFixed(decimal))
     return;
   }
   theCar.position.coordinates = newPos;
